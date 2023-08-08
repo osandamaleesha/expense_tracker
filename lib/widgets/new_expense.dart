@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import '../models/expense.dart';
 
 class NewExpense extends StatefulWidget {
+  const NewExpense({super.key,required this.registeredExpenses});
+
+  final Function(Expense) registeredExpenses;
+
   @override
   State<NewExpense> createState() {
     return _NewExpense();
@@ -58,6 +62,9 @@ class _NewExpense extends State<NewExpense> {
           ],
         ),
       );
+    }else{
+      widget.registeredExpenses(Expense(title: titleController.text, date: DateTime.now(), amount: enteredAmount, category: selectedCategory));
+      Navigator.pop(context);
     }
   }
 
